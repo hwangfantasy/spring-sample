@@ -6,6 +6,7 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="config-server" />
         <module name="service-consumer" />
         <module name="service-provider" />
         <module name="service-registry-center" />
@@ -13,6 +14,7 @@
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="compute-service" target="1.7" />
+      <module name="config-server" target="1.7" />
       <module name="service-consumer" target="1.7" />
       <module name="service-provider" target="1.7" />
       <module name="service-registry-center" target="1.7" />
