@@ -13,11 +13,12 @@ import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
  */
 @Service
 public class ComputeService {
+    private static final String service_provider_id = "SERVICE-PROVIDER";
     @Autowired
     RestTemplate restTemplate;
     @HystrixCommand(fallbackMethod = "addServiceFallback")
-    public String addService() {
-        return restTemplate.getForEntity("http://SERVICE-PROVIDER-COMPUTE/compute/add?a=10&b=20", String.class).getBody();
+    public String addService(Integer a,Integer b) {
+        return restTemplate.getForEntity("http://"+service_provider_id+"/compute/add?a="+a+"&b="+b, String.class).getBody();
     }
     public String addServiceFallback() {
         return "error";
