@@ -20,7 +20,8 @@ public class ComputeService {
     public String addService(Integer a,Integer b) {
         return restTemplate.getForEntity("http://"+service_provider_id+"/compute/add?a="+a+"&b="+b, String.class).getBody();
     }
-    public String addServiceFallback() {
+    //参数要保持一致,否则会报错
+    public String addServiceFallback(Integer a,Integer b) {
         return "error";
     }
 }
