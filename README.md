@@ -6,3 +6,8 @@ sample projects for spring framework
 ## spring-mvc-sample
 
 ## spring-cloud-sample
+- register center
+- config server
+- service provider
+- service consumer
+- route gateway
