@@ -16,6 +16,7 @@
         <option value="$PROJECT_DIR$/config-server/pom.xml" />
         <option value="$PROJECT_DIR$/service-provider/pom.xml" />
         <option value="$PROJECT_DIR$/service-consumer/pom.xml" />
+        <option value="$PROJECT_DIR$/route-gateway/pom.xml" />
       </list>
     </option>
   </component>
