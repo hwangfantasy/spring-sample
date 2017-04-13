@@ -4,6 +4,7 @@ import com.google.code.kaptcha.Constants;
 import com.google.code.kaptcha.Producer;
 import com.hwangfantasy.bean.User;
 import com.hwangfantasy.service.SampleService;
+import com.hwangfantasy.util.RedisCacheUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,6 +35,8 @@ public class SampleController {
     private SampleService sampleService;
     @Autowired
     private Producer producer;
+    @Autowired
+    private RedisCacheUtil redisCacheUtil;
 
     @RequestMapping("/sayHi")
     @ResponseBody
@@ -76,5 +79,12 @@ public class SampleController {
         } finally {
             out.close();
         }
+    }
+
+    @RequestMapping("/addRedis")
+    @ResponseBody
+    public String addRedis(@RequestParam String key ,@RequestParam String value,@RequestParam long expire){
+        redisCacheUtil.set(key,value,expire);
+        return "success";
     }
 }

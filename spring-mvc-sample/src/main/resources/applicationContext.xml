@@ -14,6 +14,7 @@
         <property name="locations">
             <list>
                 <value>classpath:config/mysql.properties</value>
+                <value>classpath:config/redis.properties</value>
             </list>
         </property>
     </bean>
@@ -126,6 +127,42 @@
                     </props>
                 </constructor-arg>
             </bean>
+        </property>
+    </bean>
+    <!-- redis pool相关配置 -->
+    <bean id="poolConfig" class="redis.clients.jedis.JedisPoolConfig">
+        <property name="maxTotal" value="${redis.maxTotal}" />
+        <property name="maxIdle" value="${redis.maxIdle}" />
+        <property name="maxWaitMillis" value="${redis.maxWait}" />
+        <property name="testOnBorrow" value="${redis.testOnBorrow}" />
+    </bean>
+    <!-- jedis客户端连接工厂 -->
+    <bean id="jedisConnectionFactory" class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory">
+        <property name="hostName" value="${redis.host}"/>
+        <property name="port" value="${redis.port}"/>
+        <property name="password" value="${redis.pass}"/>
+        <property name="poolConfig" ref="poolConfig"/>
+    </bean>
+
+    <!-- redisTemplate模板 -->
+    <bean id="stringSerializer" class="org.springframework.data.redis.serializer.StringRedisSerializer" />
+    <bean id="redisTemplate" class="org.springframework.data.redis.core.RedisTemplate">
+        <property name="connectionFactory" ref="jedisConnectionFactory" />
+        <property name="keySerializer" ref="stringSerializer" />
+        <property name="valueSerializer" ref="stringSerializer" />
+    </bean>
+
+    <!-- redis缓存管理器 -->
+    <bean id="cacheManager" class="org.springframework.data.redis.cache.RedisCacheManager">
+        <constructor-arg ref="redisTemplate"/>
+        <!-- 是否事务提交，如果事务回滚，缓存也回滚，默认false -->
+        <property name="transactionAware" value="true"/>
+        <!-- 设置缓存超时时间 已实现自动续期 如果不设置将永久存在 -->
+        <property name="expires">
+            <map>
+                <entry key="userCache" value="3600"/>
+                <entry key="permissionCache" value="3600"/>
+            </map>
         </property>
     </bean>
 </beans>
