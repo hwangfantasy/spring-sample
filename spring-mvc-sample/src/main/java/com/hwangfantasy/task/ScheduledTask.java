@@ -6,9 +6,9 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 /**
- * @作者 yunfeiyang
+ * @作者 hwangfantasy
  * @创建时间: 2017/4/13 <br/>
- * @方法描述: TODO ADD FUNCTION. <br/>
+ * @方法描述: ScheduledTask. <br/>
  */
 @Component
 public class ScheduledTask {
@@ -18,6 +18,5 @@ public class ScheduledTask {
     @Scheduled(fixedRate = 1000 * 60 * 5)//每5分钟启动一次
     private void sayHello() {
         LOGGER.info("Hello World!");
-        System.out.print("Hello World!");
     }
 }

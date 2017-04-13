@@ -88,4 +88,44 @@
     <!--开启这个配置，spring才能识别@Scheduled注解   -->
     <task:annotation-driven scheduler="scheduler" mode="proxy"/>
     <task:scheduler id="scheduler" pool-size="10"/>
+
+    <!--验证码生成器-->
+    <bean id="captchaProducer" class="com.google.code.kaptcha.impl.DefaultKaptcha">
+        <property name="config">
+            <bean class="com.google.code.kaptcha.util.Config">
+                <constructor-arg>
+                    <props>
+                        <!--是否有边框-->
+                        <prop key="kaptcha.border">yes</prop>
+                        <!--边框粗细度-->
+                        <prop key="kaptcha.border.thickness">8</prop>
+                        <!--边框颜色-->
+                        <prop key="kaptcha.border.color">238,238,238</prop>
+                        <!--验证码文本字符颜色-->
+                        <prop key="kaptcha.textproducer.font.color">blue</prop>
+                        <!--验证码噪点颜色-->
+                        <prop key="kaptcha.noise.color">32,36,155</prop>
+                        <!--验证码背景颜色渐进-->
+                        <prop key="kaptcha.background.clear.from">white</prop>
+                        <!--验证码背景颜色渐进-->
+                        <prop key="kaptcha.background.clear.to">white</prop>
+                        <!--验证码图片宽度-->
+                        <prop key="kaptcha.image.width">115</prop>
+                        <!--验证码图片高度-->
+                        <prop key="kaptcha.image.height">40</prop>
+                        <!--验证码图片高度-->
+                        <prop key="kaptcha.textproducer.font.size">30</prop>
+                        <!--<prop key="kaptcha.textproducer.font.names">宋体,楷体,微软雅黑</prop>-->
+                        <!--验证码文本字符内容范围-->
+                        <prop key="kaptcha.textproducer.char.string">abcdehjkmnrtuvwx134678</prop>
+                        <prop key="kaptcha.session.key">code</prop>
+                        <!--验证码文本字符长度-->
+                        <prop key="kaptcha.textproducer.char.length">4</prop>
+                        <!--验证码文本字符间距-->
+                        <prop key="kaptcha.textproducer.char.space">7</prop>
+                    </props>
+                </constructor-arg>
+            </bean>
+        </property>
+    </bean>
 </beans>
