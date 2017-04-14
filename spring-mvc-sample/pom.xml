@@ -45,6 +45,8 @@
         <mybatis.version>3.3.0</mybatis.version>
         <mybatis.spring.version>1.2.3</mybatis.spring.version>
         <mysql-connector-java.version>5.1.31</mysql-connector-java.version>
+
+        <thymeleaf.version>3.0.3.RELEASE</thymeleaf.version>
     </properties>
     <dependencies>
         <!-- HttpServletRequest和HttpServletResponse等对象都是要靠这个jar包才能使用的 -->
@@ -178,6 +180,18 @@
             <groupId>redis.clients</groupId>
             <artifactId>jedis</artifactId>
             <version>2.7.3</version>
+        </dependency>
+
+        <!--thymeleaf视图模板-->
+        <dependency>
+            <groupId>org.thymeleaf</groupId>
+            <artifactId>thymeleaf</artifactId>
+            <version>${thymeleaf.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.thymeleaf</groupId>
+            <artifactId>thymeleaf-spring4</artifactId>
+            <version>${thymeleaf.version}</version>
         </dependency>
     </dependencies>
     <build>
