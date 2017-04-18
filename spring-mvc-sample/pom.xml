@@ -285,12 +285,12 @@
                                 <if>
                                     <equals arg1="${package.environment}" arg2="test" />
                                     <then>
-                                        <echo message="It will be deployed in test 121.41.30.218" />
+                                        <echo message="It will be deployed in test 127.0.0.1" />
                                         <scp
                                                 file="${project.build.directory}/${project.build.finalName}.war"
-                                                port="22" trust="yes" todir="${username}:${password}@121.41.30.218:/home/spring-mvc">
+                                                port="22" trust="yes" todir="${username}:${password}@127.0.0.1:/home/spring-mvc">
                                         </scp>
-                                        <sshexec host="121.41.30.218" username="${username}" verbose="true" port="22" password="${password}" trust="yes"
+                                        <sshexec host="127.0.0.1" username="${username}" verbose="true" port="22" password="${password}" trust="yes"
                                                  command="/bin/bash /home/shell/webapps/publish.sh" failonerror="false" />
                                     </then>
                                 </if>
