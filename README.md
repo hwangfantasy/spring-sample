@@ -7,6 +7,7 @@ sample projects for spring framework
 - redis config
 - aop
 - schedule task
+- AccessInterceptor
 
 ## spring-cloud-sample
 - register center
