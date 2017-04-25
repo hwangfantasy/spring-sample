@@ -8,7 +8,7 @@ package com.hwangfantasy.enums;
 
 public enum RoleEnum {
     ROLE_ADMIN("ROLE_ADMIN", "管理员"),
-    ROLE_DEVLOPER("ROLE_DEVLOPER", "开发者");
+    ROLE_DEVLOPER("ROLE_DEVELOPER", "开发者");
     private String role;
     private String desc;
 
