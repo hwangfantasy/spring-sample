@@ -1,27 +1,19 @@
 package com.hwangfantasy.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
-
-import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
+import org.springframework.cloud.netflix.feign.FeignClient;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
- * @作者 hwangfantasy
- * @创建时间: 2017/4/10 <br/>
- * @方法描述: 样例消费服务. <br/>
+ * @作者 yunfeiyang
+ * @创建时间: 2017/4/26 <br/>
+ * @方法描述: ComputeInterface. <br/>
  */
-@Service
-public class ComputeService {
-    private static final String service_provider_id = "SERVICE-PROVIDER";
-    @Autowired
-    RestTemplate restTemplate;
-    @HystrixCommand(fallbackMethod = "addServiceFallback")
-    public String addService(Integer a,Integer b) {
-        return restTemplate.getForEntity("http://"+service_provider_id+"/compute/add?a="+a+"&b="+b, String.class).getBody();
-    }
-    //参数要保持一致,否则会报错
-    public String addServiceFallback(Integer a,Integer b) {
-        return "error";
-    }
+@FeignClient(value = "service-provider",fallback = ComputeServiceHystrix.class)
+public interface ComputeService {
+
+    @RequestMapping(method = RequestMethod.GET, value = "/compute/add")
+    Integer add(@RequestParam(value = "a") Integer a, @RequestParam(value = "b") Integer b);
+
 }
