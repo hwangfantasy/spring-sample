@@ -6,6 +6,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.io.PrintWriter;
 
 /**
  * @作者 hwangfantasy
@@ -36,10 +39,24 @@ public class AccessFilter extends ZuulFilter {
         HttpServletRequest request = ctx.getRequest();
         log.info(String.format("%s request to %s", request.getMethod(), request.getRequestURL().toString()));
         Object accessToken = request.getParameter("accessToken");
+        //这里只是判断token是否为空，具体实际token实现另行实现
         if(accessToken == null) {
             log.warn("access token is empty");
             ctx.setSendZuulResponse(false);
             ctx.setResponseStatusCode(401);
+
+            HttpServletResponse response = ctx.getResponse();
+            response.setCharacterEncoding("UTF-8");
+            response.setCharacterEncoding("UTF-8");
+            response.setContentType("text/html; charset=UTF-8");
+            PrintWriter out = null;
+            try {
+                out = response.getWriter();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            out.write("no accessToken");
+            out.close();
             return null;
         }
         log.info("access token ok");
