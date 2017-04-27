@@ -11,7 +11,7 @@ import com.hwangfantasy.dao.UserMapper;
 import java.util.List;
 
 /**
- * @作者 yunfeiyang
+ * @作者 hwangfantasy
  * @创建时间: 2017/4/25 <br/>
  * @方法描述: SampleService. <br/>
  */

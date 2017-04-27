@@ -8,7 +8,7 @@ import tk.mybatis.spring.mapper.MapperScannerConfigurer;
 import java.util.Properties;
 
 /**
- * @author yunfeiyang
+ * @author hwangfantasy
  * @创建时间: 2017/3/7 17:22 <br/>
  * @方法描述: MyBatisMapperScannerConfig. <br/>
  */

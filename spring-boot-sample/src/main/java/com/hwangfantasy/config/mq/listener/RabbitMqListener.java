@@ -8,7 +8,7 @@ import org.springframework.amqp.rabbit.core.ChannelAwareMessageListener;
 import org.springframework.stereotype.Component;
 
 /**
- * @作者 yunfeiyang
+ * @作者 hwangfantasy
  * @创建时间: 2017/4/27 <br/>
  * @方法描述: RabbitMqMessageListener. <br/>
  */
