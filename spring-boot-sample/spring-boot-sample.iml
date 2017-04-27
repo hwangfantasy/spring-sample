@@ -114,5 +114,6 @@
     <orderEntry type="library" name="Maven: commons-codec:commons-codec:1.10" level="project" />
     <orderEntry type="library" name="Maven: com.rabbitmq:amqp-client:4.0.2" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.retry:spring-retry:1.2.0.RELEASE" level="project" />
+    <orderEntry type="library" name="Maven: net.spy:spymemcached:2.11.4" level="project" />
   </component>
 </module>
