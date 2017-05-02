@@ -6,7 +6,6 @@ import org.springframework.amqp.core.Exchange;
 import org.springframework.amqp.core.Queue;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 
 import java.util.Locale;
 import java.util.ResourceBundle;
@@ -16,7 +15,7 @@ import java.util.ResourceBundle;
  * @创建时间: 2017/4/27 <br/>
  * @方法描述: RabbitMqTargetConfig. <br/>
  */
-@Configuration
+//@Configuration
 public class RabbitMqTargetConfig {
     private static final ResourceBundle RB = ResourceBundle.getBundle("mq", Locale.getDefault(), RabbitMqTargetConfig.class.getClassLoader());
 

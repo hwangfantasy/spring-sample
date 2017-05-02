@@ -8,7 +8,6 @@ import org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 
 import java.util.Locale;
 import java.util.ResourceBundle;
@@ -18,7 +17,7 @@ import java.util.ResourceBundle;
  * @创建时间: 2017/4/27 <br/>
  * @方法描述: RabbitMqSourceConfig. <br/>
  */
-@Configuration
+//@Configuration
 public class RabbitMqSourceConfig {
     private static ResourceBundle RB = ResourceBundle.getBundle("mq", Locale.getDefault(), RabbitMqSourceConfig.class.getClassLoader());
 

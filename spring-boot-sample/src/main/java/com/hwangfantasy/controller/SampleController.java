@@ -1,6 +1,7 @@
 package com.hwangfantasy.controller;
 
 import com.hwangfantasy.bean.User;
+import com.hwangfantasy.config.redis.RedisService;
 import com.hwangfantasy.service.SampleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,6 +20,9 @@ public class SampleController {
     @Autowired
     private SampleService sampleService;
 
+    @Autowired
+    private RedisService redisService;
+
     @RequestMapping(value = "/getUser")
     @ResponseBody
     public Object getUser(@RequestParam String name) {
@@ -28,5 +32,12 @@ public class SampleController {
         } else {
             return "can not find name:" + name;
         }
+    }
+
+    @RequestMapping(value = "/addRedis")
+    @ResponseBody
+    public Object addRedis(@RequestParam String key,@RequestParam String value) {
+        boolean isSuccess = redisService.set(key,value);
+        return isSuccess ? "success" : "failure";
     }
 }

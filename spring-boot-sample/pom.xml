@@ -130,9 +130,9 @@
 		</dependency>
 		<!--redis引入-->
 		<dependency>
-			<groupId>org.springframework.data</groupId>
-			<artifactId>spring-data-redis</artifactId>
-			<version>1.8.1.RELEASE</version>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-redis</artifactId>
+			<version>1.3.3.RELEASE</version>
 		</dependency>
 	</dependencies>
 
