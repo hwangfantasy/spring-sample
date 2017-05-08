@@ -47,28 +47,93 @@
         <aop:advisor pointcut-ref="txPointcut" advice-ref="txAdvice"/>
     </aop:config>
 
-    <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource"
-          destroy-method="close">
-        <!-- 数据库连接信息 -->
-        <property name="driverClassName" value="${mysql.driverclass}"/>
-        <property name="url" value="${mysql.jdbcurl}"/>
-        <property name="username" value="${mysql.user}"/>
-        <property name="password" value="${mysql.password}"/>
 
-        <!-- 连接池信息 -->
-        <property name="maxActive" value="${pool.maxActive}"/>
-        <property name="initialSize" value="${pool.initialSize}"/>
-        <property name="maxWait" value="${pool.maxWait}"/>
-        <property name="minIdle" value="${pool.minIdle}"/>
+    <!-- 切换数据源 -->
+    <bean id="dataSourceAdvice" class="com.hwangfantasy.aop.DataSourceAdvice" />
+    <aop:config>
+        <aop:advisor
+                pointcut="execution(* com.hwangfantasy..*.*(..))"
+                advice-ref="dataSourceAdvice" />
+    </aop:config>
 
-        <property name="timeBetweenEvictionRunsMillis" value="3000"/>
-        <property name="minEvictableIdleTimeMillis" value="300000"/>
-        <property name="validationQuery" value="SELECT 1"/>
-        <property name="testWhileIdle" value="true"/>
-        <property name="testOnBorrow" value="false"/>
-        <property name="testOnReturn" value="false"/>
-        <property name="poolPreparedStatements" value="true"/>
+    <!--主从库数据源-->
+    <bean id="dataSource" class="com.hwangfantasy.aop.DynamicDataSource">
+        <property name="targetDataSources">
+            <map key-type="java.lang.String">
+                <entry key="slave" value-ref="slaveDataSource" />
+            </map>
+        </property>
+        <property name="defaultTargetDataSource" ref="masterDataSource" />
     </bean>
+    <bean id="parentDataSource" class="org.apache.commons.dbcp.BasicDataSource"
+          destroy-method="close">
+    </bean>
+    <!-- 主数据源-->
+    <bean id="masterDataSource" parent="parentDataSource">
+        <property name="driverClassName" value="${master.jdbc.driverClassName}" />
+        <property name="url" value="${master.jdbc.url}" />
+        <property name="username" value="${master.jdbc.username}" />
+        <property name="password" value="${master.jdbc.password}" />
+        <!-- 连接池信息 -->
+        <property name="maxActive" value="${pool.maxActive}" />
+        <property name="initialSize" value="${pool.initialSize}" />
+        <property name="maxWait" value="${pool.maxWait}" />
+        <property name="minIdle" value="${pool.minIdle}" />
+
+        <property name="timeBetweenEvictionRunsMillis" value="3000" />
+        <property name="minEvictableIdleTimeMillis" value="300000" />
+        <property name="validationQuery" value="SELECT 1" />
+        <property name="testWhileIdle" value="true" />
+        <property name="testOnBorrow" value="false" />
+        <property name="testOnReturn" value="false" />
+        <property name="poolPreparedStatements" value="true" />
+    </bean>
+    <!-- 从数据源-->
+    <bean id="slaveDataSource" parent="parentDataSource">
+        <property name="driverClassName" value="${slave.jdbc.driverClassName}" />
+        <property name="url" value="${slave.jdbc.url}" />
+        <property name="username" value="${slave.jdbc.username}" />
+        <property name="password" value="${slave.jdbc.password}" />
+        <!-- 连接池信息 -->
+        <property name="maxActive" value="${pool.maxActive}" />
+        <property name="initialSize" value="${pool.initialSize}" />
+        <property name="maxWait" value="${pool.maxWait}" />
+        <property name="minIdle" value="${pool.minIdle}" />
+
+        <property name="timeBetweenEvictionRunsMillis" value="3000" />
+        <property name="minEvictableIdleTimeMillis" value="300000" />
+        <property name="validationQuery" value="SELECT 1" />
+        <property name="testWhileIdle" value="true" />
+        <property name="testOnBorrow" value="false" />
+        <property name="testOnReturn" value="false" />
+        <property name="poolPreparedStatements" value="true" />
+    </bean>
+
+
+
+    <!--传统数据源-->
+    <!--<bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource"-->
+          <!--destroy-method="close">-->
+        <!--&lt;!&ndash; 数据库连接信息 &ndash;&gt;-->
+        <!--<property name="driverClassName" value="${mysql.driverclass}"/>-->
+        <!--<property name="url" value="${mysql.jdbcurl}"/>-->
+        <!--<property name="username" value="${mysql.user}"/>-->
+        <!--<property name="password" value="${mysql.password}"/>-->
+
+        <!--&lt;!&ndash; 连接池信息 &ndash;&gt;-->
+        <!--<property name="maxActive" value="${pool.maxActive}"/>-->
+        <!--<property name="initialSize" value="${pool.initialSize}"/>-->
+        <!--<property name="maxWait" value="${pool.maxWait}"/>-->
+        <!--<property name="minIdle" value="${pool.minIdle}"/>-->
+
+        <!--<property name="timeBetweenEvictionRunsMillis" value="3000"/>-->
+        <!--<property name="minEvictableIdleTimeMillis" value="300000"/>-->
+        <!--<property name="validationQuery" value="SELECT 1"/>-->
+        <!--<property name="testWhileIdle" value="true"/>-->
+        <!--<property name="testOnBorrow" value="false"/>-->
+        <!--<property name="testOnReturn" value="false"/>-->
+        <!--<property name="poolPreparedStatements" value="true"/>-->
+    <!--</bean>-->
     <!-- 设置使用注解的类所在的包 -->
     <context:component-scan base-package="com.hwangfantasy">
     </context:component-scan>

@@ -21,7 +21,7 @@ import java.util.List;
  * @方法描述: TODO ADD FUNCTION. <br/>
  */
 public class AccessInterceptor implements HandlerInterceptor {
-    private String[] ignoreUrls = new String[]{"/sample"};
+    private String[] ignoreUrls = new String[]{"/sample","/index.html"};
 
     @Override
     public boolean preHandle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o) throws Exception {
