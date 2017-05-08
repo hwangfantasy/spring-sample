@@ -52,7 +52,7 @@
     <bean id="dataSourceAdvice" class="com.hwangfantasy.aop.DataSourceAdvice" />
     <aop:config>
         <aop:advisor
-                pointcut="execution(* com.hwangfantasy.service..*.*(..))"
+                pointcut="execution(* com.hwangfantasy..*.*(..))"
                 advice-ref="dataSourceAdvice" />
     </aop:config>
 
