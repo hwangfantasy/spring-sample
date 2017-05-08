@@ -65,6 +65,9 @@
         </property>
         <property name="defaultTargetDataSource" ref="masterDataSource" />
     </bean>
+    <bean id="parentDataSource" class="org.apache.commons.dbcp.BasicDataSource"
+          destroy-method="close">
+    </bean>
     <!-- 主数据源-->
     <bean id="masterDataSource" parent="parentDataSource">
         <property name="driverClassName" value="${master.jdbc.driverClassName}" />
