@@ -1,5 +1,6 @@
 package com.hwangfantasy.annotation;
 
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.lang.annotation.*;
@@ -13,6 +14,7 @@ import java.lang.annotation.*;
 @Inherited
 @Retention(RetentionPolicy.RUNTIME)
 @RequestMapping("/sample")
+@Controller
 @Documented
 public @interface SampleControllerAnnotation {
     String name() default "";
