@@ -1,10 +1,9 @@
 package com.hwangfantasy.controller;
 
+import com.hwangfantasy.ComputeInterface;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -14,17 +13,18 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RefreshScope
 @RestController
-@RequestMapping(value = "/compute")
-public class ComputeController {
+public class ComputeController implements ComputeInterface{
     @Value("${name}")
     private String name;
-    @RequestMapping(value = "/add",method = RequestMethod.GET)
-    public Integer add(@RequestParam Integer a,@RequestParam Integer b){
-        return a+b;
-    }
+
 
     @RequestMapping(value = "/sayHi")
     public String sayHi(){
         return this.name;
+    }
+
+    @Override
+    public Integer add(Integer a, Integer b) {
+        return a+b;
     }
 }
