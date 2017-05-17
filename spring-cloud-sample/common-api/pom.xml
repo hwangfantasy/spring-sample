@@ -8,11 +8,26 @@
     <artifactId>common-api</artifactId>
     <version>1.0-SNAPSHOT</version>
 
+    <repositories>
+        <repository>
+            <id>maven-repo-master</id>
+            <url>https://raw.github.com/hwangfantasy/maven-repo/master/</url>
+            <snapshots>
+                <enabled>true</enabled>
+                <updatePolicy>always</updatePolicy>
+            </snapshots>
+        </repository>
+    </repositories>
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
             <version>1.5.2.RELEASE</version>
+        </dependency>
+        <dependency>
+            <groupId>com.hwangfantasy</groupId>
+            <artifactId>smart-util</artifactId>
+            <version>1.0-SNAPSHOT</version>
         </dependency>
     </dependencies>
 </project>

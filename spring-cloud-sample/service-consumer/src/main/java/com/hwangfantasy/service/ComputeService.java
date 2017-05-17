@@ -12,6 +12,4 @@ import com.hwangfantasy.common.ComputeInterface;
 @FeignClient(value = "service-provider",fallback = ComputeServiceHystrix.class)
 public interface ComputeService extends ComputeInterface {
 
-
-
 }

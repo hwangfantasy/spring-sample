@@ -1,5 +1,6 @@
 package com.hwangfantasy.controller;
 
+import com.hwangfantasy.common.AddBean;
 import com.hwangfantasy.service.ComputeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -28,6 +29,14 @@ public class ComputeController {
     @RequestMapping(value = "/add", method = RequestMethod.GET)
     public String add(@RequestParam Integer a, @RequestParam Integer b) {
         return String.valueOf(computeService.add(a,b));
+    }
+
+    @RequestMapping(value = "/addBean")
+    public Integer addBean(@RequestParam Integer a, @RequestParam Integer b) {
+        AddBean addBean = new AddBean();
+        addBean.setA(a);
+        addBean.setB(b);
+        return computeService.addBean(addBean);
     }
 
     @RequestMapping(value = "sayHi")
