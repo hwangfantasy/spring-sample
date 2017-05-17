@@ -2,6 +2,8 @@ package com.hwangfantasy.service;
 
 import org.springframework.cloud.netflix.feign.FeignClient;
 
+import com.hwangfantasy.common.ComputeInterface;
+
 /**
  * @作者 hwangfantasy
  * @创建时间: 2017/4/26 <br/>
