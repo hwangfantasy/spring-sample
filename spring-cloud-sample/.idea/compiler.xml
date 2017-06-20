@@ -8,6 +8,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="common-api" />
         <module name="config-server" />
+        <module name="monitor-admin" />
         <module name="route-gateway" />
         <module name="service-consumer" />
         <module name="service-provider" />
@@ -17,6 +18,7 @@
     <bytecodeTargetLevel>
       <module name="common-api" target="1.5" />
       <module name="config-server" target="1.7" />
+      <module name="monitor-admin" target="1.7" />
       <module name="route-gateway" target="1.7" />
       <module name="service-consumer" target="1.7" />
       <module name="service-provider" target="1.7" />
