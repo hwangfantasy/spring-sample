@@ -27,11 +27,11 @@
 		</triggeringPolicy>
 	</appender>
 	<appender name="EMAIL" class="ch.qos.logback.classic.net.SMTPAppender">
-		<smtpHost>smtp.ideacome.com</smtpHost>
-		<username>teambition@ideacome.com</username>
-		<password>1qazCDE#5tgb</password>
-		<to>fan.huang@ideacome.com</to>
-		<from>teambition@ideacome.com</from>
+		<smtpHost>smtp.163.com</smtpHost>
+		<username>sender@163.com</username>
+		<password>password</password>
+		<to>receiver@163.com</to>
+		<from>sender@163.com</from>
 		<subject>监控预警</subject>
 		<asynchronousSending>false</asynchronousSending>
 		<layout class="ch.qos.logback.classic.PatternLayout">

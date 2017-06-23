@@ -40,4 +40,9 @@ public class SampleController {
         boolean isSuccess = redisService.set(key,value);
         return isSuccess ? "success" : "failure";
     }
+
+    @RequestMapping(value = "/showPage")
+    public String page(){
+        return "page";
+    }
 }
