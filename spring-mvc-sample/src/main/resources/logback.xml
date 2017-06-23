@@ -22,7 +22,7 @@
         <password>samplePassword</password>
         <to>reciver@163.com</to>
         <from>sender@163.com</from>
-        <subjectStr>监控线上页面内容预警</subjectStr>
+        <subject>监控线上页面内容预警</subject>
         <asynchronousSending>false</asynchronousSending>
         <layout class="ch.qos.logback.classic.PatternLayout">
             <pattern>%date %-5level %logger{35} - %message%n</pattern>
@@ -38,10 +38,6 @@
             <onMismatch>DENY</onMismatch>
         </filter>
     </appender>
-
-    <logger name="com.hwangfantasy" level="INFO">
-        <appender-ref ref="dailyRollingFile"/>
-    </logger>
 
     <root level="INFO">
         <appender-ref ref="stdout"/>

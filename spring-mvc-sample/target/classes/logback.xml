@@ -22,7 +22,7 @@
         <password>1qazCDE#5tgb</password>
         <to>fan.huang@ideacome.com</to>
         <from>teambition@ideacome.com</from>
-        <subjectStr>监控线上页面内容预警</subjectStr>
+        <subject>监控线上页面内容预警</subject>
         <asynchronousSending>false</asynchronousSending>
         <layout class="ch.qos.logback.classic.PatternLayout">
             <pattern>%date %-5level %logger{35} - %message%n</pattern>
